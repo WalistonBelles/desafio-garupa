@@ -44,6 +44,11 @@ const databaseConfig: DatabaseConfig = {
       },
       migrations: {
         naturalSort: true,
+        tableName: 'schema',
+      },
+      pool: {
+        min: 10,
+        max: 500,
       },
       healthCheck: false,
       debug: false,
