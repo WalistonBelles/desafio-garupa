@@ -24,14 +24,14 @@ export default class ExceptionHandler extends HttpExceptionHandler {
   }
 
   async makeJSONResponse(error, ctx) {
-    ctx.response.default({
+    ctx.response.status(error.status).send({
       code: error.code,
       result: {
         title: error.name || 'ExceptionHandler',
         message: error.message,
         ...(process.env.NODE_ENV === 'development' && !ctx.request.header("X-Api-Key") ? { stack: error.stack.split("\n") } : {}),
       }
-    }, undefined, error.status);
+    })
   }
 
   async makeJSONAPIResponse(error, ctx) {

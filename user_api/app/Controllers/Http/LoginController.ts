@@ -20,11 +20,11 @@ export default class LoginController {
 
     const expiresIn = payload.rememberMe ? 86400000 : 3600000
 
-    const token = await ctx.auth.use('api').generate(auth, { expiresIn, ...data })
+    const token = await ctx.auth.use('api').generate(auth, { expiresIn })
 
     const headers: HttpHeader[] = [
       { key: 'Content-type', value: 'application/json' }
-    ]
+    ];
 
     const body: HttpBody = { 
       code: 'LOGIN_SUCCESS', 

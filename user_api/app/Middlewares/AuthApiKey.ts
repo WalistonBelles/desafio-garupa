@@ -6,7 +6,6 @@ export default class AuthApiKey {
     { request, response }: HttpContextContract,
     next: () => Promise<void>
   ) {
-
     if(request.header("X-Api-Key")) {
       if (request.header("X-Api-Key") as string != Env.get('APP_KEY') as string) {
         return response.unauthorized()
