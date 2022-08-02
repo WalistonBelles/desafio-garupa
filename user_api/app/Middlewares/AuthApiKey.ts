@@ -8,7 +8,7 @@ export default class AuthApiKey {
   ) {
 
     if(request.header("X-Api-Key")) {
-      if (request.header("X-Api-Key") as string != Env.get('API_KEY') as string) {
+      if (request.header("X-Api-Key") as string != Env.get('APP_KEY') as string) {
         return response.unauthorized()
       }
     }

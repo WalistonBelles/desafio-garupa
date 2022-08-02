@@ -1,5 +1,5 @@
 import Database from "@ioc:Adonis/Lucid/Database";
-import User from "App/Models/User";
+import User from "App/Models/Access/User";
 import { DateTime } from "luxon";
 
 export default class UserService {
