@@ -43,4 +43,16 @@ export default class UserService {
     })
     return user; 
   }
+
+  public async search(): Promise<User[]> {
+    const users = await User.all();
+    
+    return users;
+  }
+
+  public async find(record: Record<string, any>): Promise<User> {
+    const user: User = await User.findOrFail(record);
+    
+    return user;
+  }
 }

@@ -8,4 +8,6 @@ Route.group(() => {
 Route.group(() => {
   Route.post('/users', 'UserController.create')
   Route.patch('/users', 'UserController.update')
+  Route.get('/users', 'UserController.search')
+  Route.get('/user/:id', 'UserController.find')
 }).middleware(['auth', 'authApiKey']);
