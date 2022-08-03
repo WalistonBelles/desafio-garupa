@@ -16,15 +16,11 @@ export default class LoginController {
 
     const data = {
       name: auth.name
-    }
+    };
 
     const expiresIn = payload.rememberMe ? 86400000 : 3600000
 
-    const token = await ctx.auth.use('api').generate(auth, { expiresIn })
-
-    const headers: HttpHeader[] = [
-      { key: 'Content-type', value: 'application/json' }
-    ];
+    const token = await ctx.auth.use('api').generate(auth, { expiresIn });
 
     const body: HttpBody = { 
       code: 'LOGIN_SUCCESS', 
@@ -34,7 +30,7 @@ export default class LoginController {
       } 
     }
 
-    ctx.response.status(200).send({body, headers })
+    ctx.response.status(200).send(body)
   }
 
   public async logout(ctx: HttpContextContract) {

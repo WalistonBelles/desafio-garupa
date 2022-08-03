@@ -1,7 +1,11 @@
 export default {
+  env: {
+    api_host: process.env.API_HOST,
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'web_app',
+    title: 'Desafio Garupa - Web APP',
     htmlAttrs: {
       lang: 'en',
     },
@@ -15,18 +19,27 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['~/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    '~/plugins/accessor',
+    '~/plugins/axios'
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: [
+    {
+      path: '~/components/',
+      pathPrefix: false,
+    },
+  ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    '@nuxtjs/vuetify',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -37,8 +50,8 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseUrl: `http://${process.env.API_HOST}`,
+    withCredentials: true
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

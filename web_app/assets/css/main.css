@@ -1,0 +1,9 @@
+:root {
+  --primary: #00ba9f;
+  --secondary: #006557;
+  --white: #ffffff;
+}
+
+.v-application a {
+  text-decoration: none;
+}
