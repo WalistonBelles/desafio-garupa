@@ -29,7 +29,7 @@ export default class ExceptionHandler extends HttpExceptionHandler {
       result: {
         title: error.name || 'ExceptionHandler',
         message: error.message,
-        ...(process.env.NODE_ENV === 'development' && !ctx.request.header("X-Api-Key") ? { stack: error.stack.split("\n") } : {}),
+        ...(process.env.NODE_ENV === 'development' && !ctx.request.header("X-Api-Key") ? { stack: error.stack ? error.stack.split("\n") : error } : {}),
       }
     })
   }

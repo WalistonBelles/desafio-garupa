@@ -10,4 +10,6 @@ Route.group(() => {
   Route.patch('/users', 'UserController.update')
   Route.get('/users', 'UserController.search')
   Route.get('/user/:id', 'UserController.find')
+
+  Route.get('/beers/:page/:per_page', 'BeerController.search')
 }).middleware(['auth', 'authApiKey']);
