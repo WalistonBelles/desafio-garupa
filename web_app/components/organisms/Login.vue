@@ -1,6 +1,8 @@
 <template>
   <div class="login-container">
     <Logo class="logo"/>
+    
+    <LoginForm />
 
     <div class="pt-12">
       <NuxtLink to="/">

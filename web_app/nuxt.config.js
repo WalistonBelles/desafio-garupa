@@ -40,18 +40,41 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     '@nuxtjs/vuetify',
+    // https://github.com/nuxt-community/router-module
+    [
+      '@nuxtjs/router',
+      {
+        fileName: "nuxt.router.js"
+      }
+    ],
   ],
 
+  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
+  vuetify: {
+    theme: {
+      dark: false,
+      themes: {
+        light: {
+          primary: '#00ba9f',
+        },
+      }
+    },
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'cookie-universal-nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseUrl: `http://${process.env.API_HOST}`,
     withCredentials: true
+  },
+
+  router: {
+    base: process.env.ROUTE || '/'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

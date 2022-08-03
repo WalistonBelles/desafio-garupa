@@ -1,9 +1,9 @@
+/* eslint-disable import/no-mutable-exports */
 import { Store } from 'vuex';
 import { getModule } from 'vuex-module-decorators';
 
-import Auth from '~/store/auth';
+import Auth from '@/store/auth';
 
-// eslint-disable-next-line import/no-mutable-exports
 let auth: Auth;
 
 const initializeStores = (store: Store<any>) => {
