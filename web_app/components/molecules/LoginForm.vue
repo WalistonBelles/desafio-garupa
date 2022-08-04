@@ -1,13 +1,7 @@
 <template>
-  <v-form
-    ref="form"
-    v-model="valid"
-    class="login-form mt-2"
-    @submit.prevent="validate"
-    @keyup.native.enter="validate"
-  >
+  <v-row class="ma-0 pa-0 text-center">
     <v-text-field
-      v-model="email"
+      v-model="$auth.email"
       :rules="rules.email"
       label="Digite seu e-mail"
       type="email"
@@ -17,34 +11,24 @@
     ></v-text-field>
 
     <v-text-field
-      v-model="password"
+      v-model="$auth.password"
       label="Digite sua senha"
       :rules="rules.password"
       :type="showPassword ? 'text' : 'password'"
       :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-      hide-details="auto"
       dense
       outlined
       @click:append="showPassword = !showPassword"
     ></v-text-field>
 
     <v-checkbox
-      v-model="rememberMe"
+      v-model="$auth.rememberMe"
       label="Mantenha-me conectado"
+      class="mt-0"
       color="success"
       hide-details
     ></v-checkbox>
-
-    <br>
-
-    <v-btn
-      depressed
-      class="btn btn-success-primary"
-      @click="validate"
-    >
-      Entrar
-    </v-btn>
-  </v-form>
+  </v-row>
 </template>
 
 <script lang="ts">
@@ -54,10 +38,6 @@ import { auth } from '~/store'
 export default Vue.extend({
   data() {
     return {
-      valid: true,
-      email: '',
-      password: '',
-      rememberMe: false,
       rules: {
         email: [
           (v: string) => !!v || 'Campo obrigatório',
@@ -71,27 +51,10 @@ export default Vue.extend({
     }
   },
 
-  methods: {
-    async onLogin() {
-      try {
-        await auth.create({
-          email: this.email,
-          password: this.password,
-          rememberMe: this.rememberMe
-        })
-        
-        this.$router.replace('/');
-
-      } catch (error) {
-        auth.setError();
-      }
-    },
-
-    async validate(this: any) {
-      await this.$refs.form.validate();
-      if (this.valid)
-        await this.onLogin();
-    },
-  }
+  computed: {
+    $auth() {
+      return auth.$credentials;
+    }
+  },
 })
 </script>

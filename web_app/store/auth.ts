@@ -6,7 +6,7 @@ import {
 } from 'vuex-module-decorators'
 
 import { $axios, $cookies } from '@/utils/nuxt-instance'
-interface CreatePayload {
+interface LoginPayload {
   email: string
   password: string,
   rememberMe: boolean
@@ -27,10 +27,20 @@ type Token = string | null;
 
 export default class Auth extends VuexModule {
   private isError = false;
+  private credentials: LoginPayload = {
+    email: "",
+    password: "",
+    rememberMe: false 
+  };
+
   private token = {} as Token;
 
   public get $token() {
-    return this.token
+    return this.token;
+  }
+
+  public get $credentials() {
+    return this.credentials;
   }
 
   public get $statusError() {
@@ -53,7 +63,7 @@ export default class Auth extends VuexModule {
   }
 
   @Action
-  public async create(payload: CreatePayload) {
+  public async login(payload: LoginPayload) {
     return await $axios.$post('login', payload)
       .then(( response ) => {
         if (response.code !== 'LOGIN_SUCCESS') 
