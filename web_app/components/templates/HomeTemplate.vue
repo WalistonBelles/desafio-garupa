@@ -1,6 +1,6 @@
 <template>
   <section class="beer-container">
-    <Title text="Listagem de Cervejas" />
+    <Title text="Listagem de Cervejas" class="mt-4"/>
     
     <Beer class="beer-table mt-2"/>
   </section>
@@ -12,7 +12,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     width: 100%;
   }
 
