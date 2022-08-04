@@ -1,10 +1,10 @@
-import IndexPage from '~/pages/index.vue'
-import Login from '~/pages/login.vue'
+import HomePage from '~/pages/home.vue';
+import Login from '~/pages/login.vue';
 
 export default [
   {
     path: '/',
-    component: IndexPage,
+    component: HomePage,
   },
   {
     path: '/login',
